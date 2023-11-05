@@ -1,0 +1,11 @@
+# x = 0.001
+# epsilon = 0.0001
+# epsilonCondition = True
+# iterationEpoch  = 0
+# while(epsilonCondition):
+#     y = (math.log(x) +4)/2
+#     if (abs(y - x) <= epsilon):
+#         epsilonCondition = False
+#     print(f"init x {x}, resulted  y {y},resulted  abs {abs(y - x)},iterationEpoch {iterationEpoch}") 
+#     x = y
+#     iterationEpoch = iterationEpoch +1 
