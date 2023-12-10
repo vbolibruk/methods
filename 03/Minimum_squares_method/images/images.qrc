@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="images">
+    <file>sqrt_sq_expr.png</file>
+    <file>quit.svg</file>
+    <file>open.svg</file>
+    <file>save.svg</file>
+  </qresource>
+</RCC>

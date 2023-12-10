@@ -1,0 +1,1 @@
+self.result_label.setText(line_label)

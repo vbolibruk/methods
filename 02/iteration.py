@@ -6,6 +6,7 @@ from tkinter import ttk
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import random
 
 
 ODZ  = [-1.999999999, -0.0000000001 ,0.0000000001, 1000 ]
@@ -72,7 +73,41 @@ def integrate_rectangular(a, b, n=1000):
     
     return integral
 
+def integrate_trapezoidal(a, b, n=1000):
+    """Вычисление интеграла функции f на интервале [a, b] с использованием метода трапеций."""
+    
+    # Если границы включают неопределенные точки, сместите их немного.
+    if a == 0 or a == -2:
+        a += 1e-10
+    if b == 0 or b == -2:
+        b -= 1e-10
+    
+    h = (b - a) / n
+    integral = 0.5 * (f(a) + f(b))
+    
+    for i in range(1, n):
+        x_value = a + i * h
+        integral += f(x_value)
+    
+    integral *= h
 
+    return integral
+
+def integrate_monte_carlo(a, b, samples=1000):
+    """Вычисление интеграла функции f на интервале [a, b] с использованием метода Монте-Карло."""
+    
+    sum_of_samples = 0
+    for _ in range(samples):
+        # Генерируем случайное число в интервале [a, b]
+        random_point = a + (b - a) * random.random()
+        # Добавляем значение функции в этой точке к сумме
+        sum_of_samples += f(random_point)
+
+    # Усредняем сумму и умножаем на длину интервала
+    average = sum_of_samples / samples
+    integral = average * (b - a)
+
+    return integral
 
 def plot_graph(from_x, to_x):
     x_values = np.linspace(from_x, to_x, 1000)
@@ -114,6 +149,18 @@ def on_plot_button_click():
         area = integrate_rectangular(a, b)
         
         print(f"Площадь под графиком: {area}")
+    if(function_dropdown2 == "трапецій"):
+        area = integrate_trapezoidal(a, b)
+        
+        print(f"Площадь под графиком: {area}")
+
+
+    if(function_dropdown2 == "Монте-Карло"):
+        area = integrate_monte_carlo(a, b)
+        
+        print(f"Площадь под графиком: {area}")
+
+
     display_results_in_table(a, b, area, function_dropdown2)
 
 
